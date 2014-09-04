@@ -1,0 +1,46 @@
+# Win32 Makefile for rxHash
+# this makefile works with the microsoft visual c compiler
+# you are meant to copy Makefile.nt to the name Makefile, and
+# then type `make dist' to get an optimised version of the library
+
+#  The contents of this file are subject to the Mozilla Public License
+#  Version 1.1 (the "License"); you may not use this file except in
+#  compliance with the License. You may obtain a copy of the License at
+#  http://www.mozilla.org/MPL/
+
+#  Software distributed under the License is distributed on an "AS IS"
+#  basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+#  License for the specific language governing rights and limitations
+#  under the License.
+
+#  The Original Code is rxHash.
+
+#  The Initial Developer of the Original Code is Patrick TJ McPhee.
+#  Portions created by Patrick McPhee are Copyright © 2000,2003
+#  Patrick TJ McPhee. All Rights Reserved.
+
+#  Contributors:
+
+# $Header: C:/ptjm/rexx/rxhash/RCS/Makefile.nt 1.2 2003/05/26 19:56:57 ptjm Rel $
+
+DEBUG=-Zi
+DOPT=-Ox -G6
+INCDIR=../regina
+LIBDIR=..\regina
+CDEFS=
+CFLAGS=$(OPT) $(DEBUG) $(CDEFS) -nologo -GF -I$(INCDIR) -MD
+LDFLAGS=-LD $(OPT) $(DEBUG) -MD
+LIBS=$(LIBDIR)\regina.lib
+CC=cl
+
+rxhash.dll : rxhash.c rxhash.h rxhash.def rxhash.res
+	$(CC) $(CFLAGS) $(LDFLAGS) rxhash.c rxhash.def rxhash.res $(LIBS)
+
+rxhash.res : rxhash.rc
+	rc rxhash.rc
+
+dist:
+	$(MAKE) -f Makefile.nt $(MAKEFLAGS) OPT="$(DOPT)" DEBUG=""
+
+clean:
+	-del rxhash.dll rxhash.obj rxhash.res rxhash.lib rxhash.exp *.ilk *.pdb

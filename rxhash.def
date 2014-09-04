@@ -1,0 +1,25 @@
+LIBRARY rxhash
+
+;; entry points for rexx
+EXPORTS arrnew         @1
+EXPORTS arrset         @2
+EXPORTS arrget         @3
+EXPORTS arrin          @4
+EXPORTS arrdrop        @5
+EXPORTS arrdoover      @6
+EXPORTS arrcopy        @7
+EXPORTS arrtostem      @8
+EXPORTS arrfromstem    @9
+EXPORTS arrdefault     @10
+EXPORTS arrversion     @11
+EXPORTS arrloadfuncs   @12
+EXPORTS arrdropfuncs   @13
+
+
+;; entry points for C callable libraries -- never change the ordinals!
+EXPORTS rxhash_new     @101
+EXPORTS rxhash_delete  @102
+EXPORTS rxhash_set     @103
+EXPORTS rxhash_get     @104
+EXPORTS rxhash_drop    @105
+EXPORTS rxhash_iterate @106
